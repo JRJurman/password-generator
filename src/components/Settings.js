@@ -14,6 +14,19 @@ const itemStyle = {
 };
 
 class Settings extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      length: 13
+    };
+  }
+
+  onLengthResize(eventProxy) {
+    const value = eventProxy.nativeEvent.target.value;
+    this.setState({length: value});
+  }
+
   render() {
     return (
       <div>
@@ -29,10 +42,15 @@ class Settings extends Component {
           </Button>
         </div>
         <div style={containerStyle}>
-          <h3><Label bsStyle="primary"> Password Size : 15 </Label></h3>
+          <h3><Label bsStyle="primary">
+            Password Size : {this.state.length}
+          </Label></h3>
         </div>
         <div style={containerStyle}>
-          <input type="range"></input>
+          <input type="range"
+            defaultValue={13} min={6} max={50}
+            onChange={this.onLengthResize.bind(this)}
+          />
         </div>
       </div>
     );
