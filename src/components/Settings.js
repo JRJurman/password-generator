@@ -2,19 +2,19 @@ import React, { Component } from 'react';
 
 import { Label, Button } from 'react-bootstrap';
 
+const containerStyle = {
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  margin: '20px 40px'
+};
+
+const itemStyle = {
+  width: '187px'
+};
 
 class Settings extends Component {
   render() {
-    const containerStyle = {
-      display: 'flex',
-      justifyContent: 'space-around',
-      margin: '20px 0px',
-      alignItems: 'center'
-    };
-    const itemStyle = {
-      width: '187px'
-    };
-
     return (
       <div>
         <div style={containerStyle}>
