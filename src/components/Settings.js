@@ -53,7 +53,6 @@ class Settings extends Component {
   }
 }
 
-
 function select(state) {
   return {
     settings: state.settings
