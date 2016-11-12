@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import { FormGroup, FormControl } from 'react-bootstrap';
 
@@ -23,4 +24,10 @@ class PasswordField extends Component {
   }
 }
 
-export default PasswordField;
+function select(state) {
+  return {
+    settings: state.settings
+  };
+}
+
+export default connect(select)(PasswordField);

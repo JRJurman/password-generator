@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
 import { Label, Button } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { setPasswordLength } from '../reducers/settings';
 
 const containerStyle = {
   display: 'flex',
@@ -15,16 +17,10 @@ const itemStyle = {
 
 class Settings extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      length: 13
-    };
-  }
-
   onLengthResize(eventProxy) {
-    const value = eventProxy.nativeEvent.target.value;
-    this.setState({length: value});
+    const value = parseInt(eventProxy.nativeEvent.target.value, 10);
+    const { dispatch } = this.props;
+    dispatch(setPasswordLength(value));
   }
 
   render() {
@@ -43,7 +39,7 @@ class Settings extends Component {
         </div>
         <div style={containerStyle}>
           <h3><Label bsStyle="primary">
-            Password Size : {this.state.length}
+            Password Size : {this.props.settings.length}
           </Label></h3>
         </div>
         <div style={containerStyle}>
@@ -57,4 +53,11 @@ class Settings extends Component {
   }
 }
 
-export default Settings;
+
+function select(state) {
+  return {
+    settings: state.settings
+  };
+}
+
+export default connect(select)(Settings);
