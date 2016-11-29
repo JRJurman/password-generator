@@ -9,11 +9,30 @@ import PasswordField from './PasswordField.js';
 class Main extends Component {
   render() {
 
-    const emptyArray = Array(this.props.settings.length).join('.').split('.');
-    const password = emptyArray.map(()=> {
-      const randomValue = Math.floor(Math.random()*(26)+97);
-      return String.fromCharCode(randomValue);
-    }).join('');
+    const options = [
+      () => {
+        const randomValue = Math.floor(Math.random()*(26)+97);
+        return String.fromCharCode(randomValue);
+      },
+      () => {
+        const randomValue = Math.floor(Math.random()*(26)+65);
+        return String.fromCharCode(randomValue);
+      },
+      () => {
+        const randomValue = Math.floor(Math.random()*(10)+48);
+        return String.fromCharCode(randomValue);
+      },
+      () => {
+        const randomValue = Math.floor(Math.random()*(6)+58);
+        return String.fromCharCode(randomValue);
+      }
+    ]
+
+    const emptyArray = '.'.repeat(this.props.settings.length).split('.');
+    const password = emptyArray.reduce((password, _, index)=> {
+      const pass = Math.round(Math.random()) ? password.reverse() : password;
+      return pass.concat(options[index % options.length]());
+    }, []).join('');
 
     return (
       <div className="App">
