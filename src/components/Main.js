@@ -3,32 +3,14 @@ import logo from '../logo.svg';
 import '../App.css';
 import { connect } from 'react-redux';
 
-import Settings from './Settings.js';
-import PasswordField from './PasswordField.js';
+import Settings from './Settings';
+import PasswordField from './PasswordField';
 
 class Main extends Component {
   render() {
+    const {options, length} = this.props.settings;
 
-    const options = [
-      () => {
-        const randomValue = Math.floor(Math.random()*(26)+97);
-        return String.fromCharCode(randomValue);
-      },
-      () => {
-        const randomValue = Math.floor(Math.random()*(26)+65);
-        return String.fromCharCode(randomValue);
-      },
-      () => {
-        const randomValue = Math.floor(Math.random()*(10)+48);
-        return String.fromCharCode(randomValue);
-      },
-      () => {
-        const randomValue = Math.floor(Math.random()*(6)+58);
-        return String.fromCharCode(randomValue);
-      }
-    ]
-
-    const emptyArray = '.'.repeat(this.props.settings.length).split('.');
+    const emptyArray = '.'.repeat(length).split('.');
     const password = emptyArray.reduce((password, _, index)=> {
       const pass = Math.round(Math.random()) ? password.reverse() : password;
       return pass.concat(options[index % options.length]());

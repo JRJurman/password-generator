@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { Label, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { setPasswordLength } from '../reducers/settings';
+import { setPasswordLength, setCaptialOption } from '../reducers/settings';
 
 const containerStyle = {
   display: 'flex',
@@ -23,11 +23,28 @@ class Settings extends Component {
     dispatch(setPasswordLength(value));
   }
 
+  onCapitalLettersClick() {
+    const { dispatch, settings } = this.props;
+    dispatch(setCaptialOption(!settings.captialOption));
+  }
+
+  onSpecialCharactersClick() {
+
+  }
+
+  onNumbersClick() {
+
+  }
+
   render() {
+    const {captialOption} = this.props.settings;
+
     return (
       <div>
         <div style={containerStyle}>
-          <Button style={itemStyle} bsSize="large" bsStyle="default">
+          <Button style={itemStyle} bsSize="large"
+                  bsStyle={captialOption ? 'primary' : 'default'}
+                  onClick={this.onCapitalLettersClick.bind(this)}>
             Capital Letters
           </Button>
           <Button style={itemStyle} bsSize="large" bsStyle="default">
