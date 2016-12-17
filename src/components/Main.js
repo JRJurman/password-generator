@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import logo from '../logo.svg';
-import '../App.css';
+
 import { connect } from 'react-redux';
 
 import Settings from './Settings';
@@ -19,7 +18,6 @@ class Main extends Component {
     return (
       <div className="App">
         <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
           <h2>Password Generator</h2>
         </div>
 

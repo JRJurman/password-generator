@@ -11,7 +11,9 @@ const containerStyle = {
 }
 
 const itemStyle = {
-  flexGrow: 1
+  flexGrow: 1,
+  fontSize: '22px',
+  height: '2.2em'
 };
 
 class PasswordField extends Component {

@@ -7,13 +7,15 @@ import {  setPasswordLength, setCaptialOption, setSpecialOption,
 
 const containerStyle = {
   display: 'flex',
-  justifyContent: 'space-between',
+  justifyContent: 'center',
   alignItems: 'center',
-  margin: '20px 40px'
+  margin: '20px 40px',
+  flexWrap: 'wrap',
 };
 
 const itemStyle = {
-  width: '187px'
+  width: '187px',
+  margin: '0.2em 1em'
 };
 
 class Settings extends Component {
