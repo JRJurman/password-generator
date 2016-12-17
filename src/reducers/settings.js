@@ -44,13 +44,13 @@ const uppercaseAlpha = function() {
   return String.fromCharCode(randomValue);
 }
 
-const numbers = function() {
-  const randomValue = Math.floor(Math.random()*(10)+48);
+const specialCharacters = function() {
+  const randomValue = Math.floor(Math.random()*(13)+33);
   return String.fromCharCode(randomValue);
 }
 
-const specialCharacters = function() {
-  const randomValue = Math.floor(Math.random()*(13)+33);
+const numbers = function() {
+  const randomValue = Math.floor(Math.random()*(10)+48);
   return String.fromCharCode(randomValue);
 }
 
@@ -78,7 +78,29 @@ export default function settings(settings = {
         captialOption: action.captialOption
       });
     case SET_SPECIAL_OPTION:
+      let specialOptions = settings.options;
+      if (action.specialOption) {
+        specialOptions = settings.options.concat(specialCharacters);
+      } else {
+        const specialIndex = settings.options.indexOf(specialCharacters);
+        specialOptions.splice(specialIndex, 1);
+      }
+      return Object.assign({}, settings, {
+        options: specialOptions,
+        specialOption: action.specialOption
+      });
     case SET_NUMBER_OPTION:
+      let numberOptions = settings.options;
+      if (action.numberOption) {
+        numberOptions = settings.options.concat(numbers);
+      } else {
+        const numberIndex = settings.options.indexOf(numbers);
+        numberOptions.splice(numberIndex, 1);
+      }
+      return Object.assign({}, settings, {
+        options: numberOptions,
+        numberOption: action.numberOption
+      });
     default:
       return settings;
   }

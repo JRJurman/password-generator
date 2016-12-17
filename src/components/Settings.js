@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 
 import { Label, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { setPasswordLength, setCaptialOption } from '../reducers/settings';
+import {  setPasswordLength, setCaptialOption, setSpecialOption,
+          setNumberOption } from '../reducers/settings';
 
 const containerStyle = {
   display: 'flex',
@@ -29,15 +30,18 @@ class Settings extends Component {
   }
 
   onSpecialCharactersClick() {
-
+    const { dispatch, settings } = this.props;
+    dispatch(setSpecialOption(!settings.specialOption));
   }
 
   onNumbersClick() {
-
+    const { dispatch, settings } = this.props;
+    dispatch(setNumberOption(!settings.numberOption));
   }
 
   render() {
-    const {captialOption} = this.props.settings;
+    const { captialOption, specialOption,
+            numberOption} = this.props.settings;
 
     return (
       <div>
@@ -47,10 +51,14 @@ class Settings extends Component {
                   onClick={this.onCapitalLettersClick.bind(this)}>
             Capital Letters
           </Button>
-          <Button style={itemStyle} bsSize="large" bsStyle="default">
+          <Button style={itemStyle} bsSize="large"
+                  bsStyle={specialOption ? 'primary' : 'default'}
+                  onClick={this.onSpecialCharactersClick.bind(this)}>
             Special Characters
           </Button>
-          <Button style={itemStyle} bsSize="large" bsStyle="default">
+          <Button style={itemStyle} bsSize="large"
+                  bsStyle={numberOption ? 'primary' : 'default'}
+                  onClick={this.onNumbersClick.bind(this)}>
             Numbers
           </Button>
         </div>
